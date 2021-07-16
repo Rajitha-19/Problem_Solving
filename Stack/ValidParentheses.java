@@ -29,13 +29,13 @@ class Solution {
     }
     public static boolean isParen(String str){
         char[] arr=str.toCharArray();
-        Stack stck=new Stack<>();
+        Stack<Character> stck=new Stack<>();
         for(int i=0;i<arr.length;i++){
             if(arr[i]=='(' || arr[i]=='{' || arr[i]=='['){
                 stck.push(arr[i]);
             }
             else if(arr[i]==')' || arr[i]=='}' || arr[i]==']'){
-                if(stck.isEmpty() || (!check((Character)stck.pop(),arr[i]))){
+                if(stck.isEmpty() || (!check(stck.pop(),arr[i]))){
                     return false;
                 }
             }
