@@ -8,9 +8,6 @@ After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
 
 */
 
-
-
-
 class Solution {
     public String removeOuterParentheses(String S) {
         ArrayList<String> list=new ArrayList<>();
