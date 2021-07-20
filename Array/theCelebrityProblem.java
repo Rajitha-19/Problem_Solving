@@ -24,6 +24,7 @@ Output: -1
 Explanation: The two people at the party both
 know each other. None of them is a celebrity*/
 
+//Approach 1:Time and space complexities=O(N^2),O(N)
 
 class Solution
 { 
@@ -51,3 +52,35 @@ class Solution
     }
     
 }
+
+//Approach 2:Time and space complexities=O(N^2),O(1)
+
+
+class Solution
+{ 
+    //Function to find if there is a celebrity in the party or not.
+    int celebrity(int M[][], int n)
+    {
+    	for(int i=0;i<n;i++){
+    	    boolean flag=true;
+             //check whether the celebrity does not know anyone.
+    	    for(int j=0;j<n;j++){
+    	        if(M[i][j]!=0){
+    	            flag=false;
+    	        }
+    	    }
+             //to check whether everyone knows celebrity or not.
+    	    for(int k=0;k<n;k++){
+    	        if(k!=i && M[k][i]==0){
+    	            flag=false;
+    	        }
+    	    }
+    	    if(flag){
+    	        return i;
+    	    }
+    	}
+    	return -1;
+    }
+    
+}
+
