@@ -40,7 +40,9 @@ class Solution
     	    }
     	}
     	for(int i=0;i<n;i++){
+                  
           //condition to check whether the person in celebrity or not.
+                  
     	    if(outDegree[i]==0 && inDegree[i]==n-1){
     	        return i;
     	    }
