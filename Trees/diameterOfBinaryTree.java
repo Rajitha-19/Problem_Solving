@@ -19,11 +19,11 @@ class Solution {
         if(root==null){
             return 0;
         }
-        int lh=height(root.left);
-        int rh=height(root.right);
-        int ld=diameterOfBinaryTree(root.left);
-        int rd=diameterOfBinaryTree(root.right);
-        return Math.max((lh+rh),Math.max(ld,rd));
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+        int leftDia=diameterOfBinaryTree(root.left);
+        int rightDia=diameterOfBinaryTree(root.right);
+        return Math.max((leftheight+rightHeight),Math.max(leftDia,rightDia));
         
     }
     public int height(TreeNode node){
