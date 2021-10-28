@@ -24,12 +24,16 @@ Notice that the answer must be a substring, "pwke" is a subsequence and not a su
 class Solution {
     public int lengthOfLongestSubstring(String st) {
         char[] s=st.toCharArray();
+        //hashmap for keep tracking of caharacters count
         HashMap<Character,Integer> window=new HashMap<>();
+        //slow pointer
         int left=0;
+        //fast pointer
         int right=0;
         int maxLen=0;
         while(right<st.length()){
             char c=s[right];
+            //incrementing the frequency of the characters 
             window.put(c,window.getOrDefault(c,0)+1);
             right++;
             while(window.get(c)>1){
