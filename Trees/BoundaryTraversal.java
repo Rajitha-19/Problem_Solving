@@ -22,32 +22,70 @@ Sample Output 2:
 */
 
 
+import java.util.ArrayList;
 import java.util.*;
+
 public class Solution {
-	public static int getMaxWidth(TreeNode root) {
-		// Write your code here.
-        //ArrayList<Integer> list=new ArrayList<>();
-        int maxSize=0;
-        if(root==null){
-            return 0;
+    public static boolean isLeafNode(TreeNode root){
+        if(root.left==null && root.right==null){
+            return true;
         }
-        Queue<TreeNode> queue=new LinkedList<>();
-        queue.add(root);
-        while(!queue.isEmpty()){
-            int n=queue.size();
-            int currSize=0;
-            for(int i=0;i<n;i++){
-                TreeNode curr=queue.poll();
-                currSize++;
-                if(curr.left!=null){
-                    queue.add(curr.left);
-                }
-                if(curr.right!=null){
-                    queue.add(curr.right);
-                }
+        return false;
+    }
+    public static void addLeftBoundary(TreeNode root,ArrayList<Integer> res){
+        TreeNode curr=root.left;
+        while(curr!=null){
+            if(!isLeafNode(curr)){
+                res.add(curr.data);
             }
-            maxSize=Math.max(maxSize,currSize);
+            if(curr.left!=null){
+                curr=curr.left;
+            }
+            else{
+                curr=curr.right;
+            }
         }
-        return maxSize;
+    }
+    public static void addRightBoundary(TreeNode root,ArrayList<Integer> res){
+        TreeNode curr=root.right;
+        ArrayList<Integer> temp=new ArrayList<>();
+        while(curr!=null){
+            if(!isLeafNode(curr)){
+                temp.add(curr.data);
+            }
+            if(curr.right!=null){
+                curr=curr.right;
+            }
+            else{
+                curr=curr.left;
+            }
+        }
+        for(int i=temp.size()-1;i>=0;i--){
+            res.add(temp.get(i));
+        }
+    }
+    public static void addLeaves(TreeNode root,ArrayList<Integer> res){
+        if(isLeafNode(root)){
+            res.add(root.data);
+            return;
+        }
+        if(root.left!=null){
+            addLeaves(root.left,res);
+        }
+        if(root.right!=null){
+            addLeaves(root.right,res);
+        }
+    }
+	public static ArrayList<Integer> traverseBoundary(TreeNode root){
+		// Write your code here
+        ArrayList<Integer> res=new ArrayList<>();
+        if(!isLeafNode(root)){
+            res.add(root.data);
+        }
+        addLeftBoundary(root,res);
+        addLeaves(root,res);
+        addRightBoundary(root,res);
+        return res;
+ 
 	}
 }
